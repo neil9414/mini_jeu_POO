@@ -24,6 +24,7 @@ while player1.life_points > 0 || player2.life_points > 0
 	end
 	
 	if player2.life_points <= 0 #pour le cas de figure où José meurt
+		puts "#{player2.name} est mort..."  
     break
     else
 	  	puts "Passons à la phase d'attaque :"

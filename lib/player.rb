@@ -1,38 +1,33 @@
-require 'pry'
-
-
 class Player
-	attr_accessor :name, :life_points
-	
-	def initialize (name)
-		@name = name
-		@life_points = 10
-	end
+  attr_accessor :name , :life_points
+  
+  def initialize (name)
+    @name = name
+    @life_points = 10
+  end
 
-	def show_state 
-		puts "#{@name} à #{@life_points} point de vie "
-	end
+  def show_state
+    puts "#{name} a #{life_points} point de vie."
+  end
 
-	def gets_damage (damage)
-		new_life_points = life_points - damage
-		@life_points = new_life_points
-		 if life_points <= 0 
-	     puts "Le joueur #{@name} a été tué"
-	  end 
-	 end 
-def attacks (player_b)
-	puts "#{@name} attaque le joueur #{player_b.name}"
+  def gets_damage(damage)
+    new_life_points = @life_points - damage
+    @life_points = new_life_points
+  end
 
-	damage_points = compute_damage
+  def attacks(player_def)
+    player_at = self.name
+    puts " Le joueur #{player_at} attaque le joueur #{player_def.name},"
+    @damage = compute_damage
+    player_def.gets_damage(@damage)
+    puts "il lui inflige #{@damage} points de dommages."
 
-	puts "il lui inflige #{damage_points}poitns de dommages"
+  end
 
-	player_b.gets_damage(damage_points)
-end
+  def compute_damage
+    return rand(1..6)
+  end
 
-def compute_damage
-	return rand (1..6)
-	
 end
 
 class HumanPlayer < Player
@@ -84,14 +79,4 @@ class HumanPlayer < Player
     end
   end
 
-end
-
-    
-
-
-
-
-
-	
-	
 end

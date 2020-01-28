@@ -8,23 +8,27 @@ require_relative 'lib/player'
 
 player1 = Player.new("Josiane")
 player2 = Player.new("José")
-while player1.life_points > 0 && player2.life_points > 0 do 
 
-puts "voici l'etat de chaque joueur "
-puts "  "
-player1.show_state
-player2.show_state
-puts "Passons à la phase d'attaque :"
+while player1.life_points > 0 || player2.life_points > 0
+  puts "Voici l'état de chaque joueur :"
+  puts player1.show_state
+  puts player2.show_state
+  puts "---------------------------------"
 
- 
-  player1.attacks(player2)
-  puts "  "
-  if player2.life_points > 0
-    player2.attacks(player1)
-   puts "  "
-  else break
-  end
+  	if player1.life_points <= 0 #pour le cas de figure où Josiane meurt
+  	puts "#{player1.name} est morte..."  
+  	break
+	else
+		puts "Passons à la phase d'attaque :"
+	    puts player1.attacks(player2)
+	end
+	
+	if player2.life_points <= 0 #pour le cas de figure où José meurt
+    break
+    else
+	  	puts "Passons à la phase d'attaque :"
+	  	puts player2.attacks(player1)
+	end
+end
 
- end
-
-binding.pry
+binding pry
